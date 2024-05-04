@@ -30,13 +30,21 @@ const Home = () => {
         });
         const data = await response.json();
         setNotes(data.obj);
+
+        if(data.status !== 200){
+          console.log("false");
+          alert(data.msg);
+        }
+
       };
   
       fetchNotes();
+
     }, [userId]);
 
   } catch (error) {
     console.error(error);
+    alert(error);
   }
 
   const handlePageChange = (data) => {
@@ -66,7 +74,7 @@ const Home = () => {
         />
       </div>
 
-      <div className='fab'>
+      <div className='fab' >
         <FaPlus className='fab-ic'/>
       </div>
 

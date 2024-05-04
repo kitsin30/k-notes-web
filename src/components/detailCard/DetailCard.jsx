@@ -24,15 +24,17 @@ const DetailCard = () => {
 
       if(data.status === 200){
         navigate("/home");
-        alert("Success Delete this note");
+        alert(data.msg);
         console.log("true");
         
       } else{
         console.log("false");
+        alert(data.msg);
       }
 
     } catch (error) {
       console.error(error);
+      alert(error);
     }
   }
 

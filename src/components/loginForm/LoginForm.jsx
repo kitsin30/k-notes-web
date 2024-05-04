@@ -33,10 +33,12 @@ const LoginForm = () => {
         
       } else{
         console.log("false");
+        alert(data.msg);
       }
 
     } catch (error) {
       console.error(error);
+      alert(error);
     }
 
     
