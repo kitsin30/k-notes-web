@@ -1,0 +1,64 @@
+.detail-card{
+  width: 100%;
+  height: 100vh;
+}
+
+.detail-content{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.detail-content .content-text{
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: white;
+}
+
+.detail-content .button-help{
+  position:fixed;
+	width: 100%;
+	height:60px;
+	bottom:20px;
+	color:white;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.button-help .delete-button{
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.button-help .delete-button:hover{
+  background: #0C9;
+  border-radius: 50px;
+}
+
+.button-help .edit-button{
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.button-help .edit-button:hover{
+  background: #0C9;
+  border-radius: 50px;
+}
+
+.button-help p{
+  margin-top: 8px;
+}

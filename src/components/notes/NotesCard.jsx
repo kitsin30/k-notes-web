@@ -7,7 +7,7 @@ const NotesCard = ( { note, ctr } ) => {
   
   const moveToCard = (note) => {
     navigate("/home/detail", {
-      note
+      state: note
     });
   }
 

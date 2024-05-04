@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 import LoginForm from './components/loginForm/LoginForm';
 import Home from './components/home/Home';
@@ -9,7 +9,13 @@ const PrivateRoute = () => {
   return user ? <Outlet /> : <Navigate to="/" replace />;
 }
 
+const ValidateDetailCard = () => {
+  const location = useLocation();
+  return location.state ? <Outlet /> : <Navigate to="/home" replace />;
+}
+
 function App() {
+
   return (
     <div>
       <Router>
@@ -17,7 +23,10 @@ function App() {
           <Route path='/' exact element={<LoginForm />} />
           <Route element={<PrivateRoute />} >
             <Route path='/home' element={<Home />} />
-            <Route path='/home/detail' element={<DetailCard />} />
+            <Route element={<ValidateDetailCard />}>
+              <Route path='/home/detail' element={<DetailCard />} />
+            </Route>
+            
           </Route>
         </Routes>
       </Router>

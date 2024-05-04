@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import NotesCard from '../notes/NotesCard';
 import './Home.css';
 import Navbar from '../navbar/Navbar';
-import { useNavigate } from 'react-router-dom';
+import { FaPlus } from 'react-icons/fa';
 
 const Home = () => {
   const [notes, setNotes] = useState(null);
@@ -19,14 +19,6 @@ const Home = () => {
   }
 
   const userId = localStorage.getItem("userId");
-
-  const navigate = useNavigate();
-  
-  const moveToCard = (note) => {
-    navigate("/home/detail", {
-      note
-    });
-  };
 
   try {
     useEffect(() => {
@@ -72,6 +64,10 @@ const Home = () => {
           renderOnZeroPageCount={null}
           className='pagination-menu'
         />
+      </div>
+
+      <div className='fab'>
+        <FaPlus className='fab-ic'/>
       </div>
 
     </div>

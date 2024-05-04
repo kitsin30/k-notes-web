@@ -37,7 +37,6 @@ const LoginForm = () => {
 
     } catch (error) {
       console.error(error);
-      // Handle login error
     }
 
     
