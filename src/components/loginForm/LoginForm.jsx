@@ -13,7 +13,6 @@ const LoginForm = () => {
   const handleLogin = async (e) => {
 
     e.preventDefault();
-    console.log(username);
 
     try {
       const response = await fetch('http://localhost:8080/user/findbyid', {
@@ -23,13 +22,12 @@ const LoginForm = () => {
       });
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       if(data.status === 200){
         localStorage.setItem('username', JSON.stringify(data.obj.username));
         localStorage.setItem('userId', JSON.stringify(data.obj.id));
         navigate("/home");
-        alert(data.msg);
         console.log("true");
         
       } else{

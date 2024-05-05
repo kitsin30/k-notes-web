@@ -29,13 +29,10 @@ const NotesForm = (props) => {
 
     const userNotes = noteText;
 
-    console.log(userNotes);
-
     try {
       let response;
       
       if(!props.note){
-        console.log(userNotes);
         const userId = localStorage.getItem('userId');
         response = await fetch('http://localhost:8080/notes/add', {
           method: 'POST',
@@ -52,7 +49,7 @@ const NotesForm = (props) => {
       }
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       if(data.status === 200){
         navigate('/home');

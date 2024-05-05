@@ -12,7 +12,6 @@ const RegisterForm = () => {
   const handleRegister = async (e) => {
 
     e.preventDefault();
-    console.log(username);
 
     try {
       const response = await fetch('http://localhost:8080/user/add', {
@@ -22,7 +21,7 @@ const RegisterForm = () => {
       });
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       if(data.status === 200){
         navigate("/");

@@ -14,18 +14,17 @@ const ForgotForm = () => {
   const handleForgot = async (e) => {
 
     e.preventDefault();
-    console.log(username);
 
     if(confirmpassword === password){
       try {
-        const response = await fetch('http://localhost:8080/user/findbyid', {
-          method: 'POST',
+        const response = await fetch('http://localhost:8080/user/updatepassword', {
+          method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password }),
         });
   
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
   
         if(data.status === 200){
           navigate("/");
