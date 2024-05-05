@@ -4,6 +4,7 @@ import NotesCard from '../notes/NotesCard';
 import './Home.css';
 import Navbar from '../navbar/Navbar';
 import { FaPlus } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [notes, setNotes] = useState(null);
@@ -19,6 +20,8 @@ const Home = () => {
   }
 
   const userId = localStorage.getItem("userId");
+
+  const navigate = useNavigate();
 
   try {
     useEffect(() => {
@@ -47,6 +50,15 @@ const Home = () => {
     alert(error);
   }
 
+  const openAddNotesPage = () => {
+    const title = 'Add Note';
+    const flag = true;
+    localStorage.setItem('addPage', JSON.stringify({ flag }));
+    navigate("/home/addnote", {
+      state: { title }
+    });
+  }
+
   const handlePageChange = (data) => {
     setCurrentPage(data.selected + 1);
   }
@@ -67,14 +79,14 @@ const Home = () => {
           nextLabel="next >"
           onPageChange={handlePageChange}
           pageRangeDisplayed={totalNotes}
-          pageCount={(totalNotes / 10)}
+          pageCount={Math.ceil(totalNotes / 10)}
           previousLabel="< previous"
           renderOnZeroPageCount={null}
           className='pagination-menu'
         />
       </div>
 
-      <div className='fab' >
+      <div className='fab' onClick={openAddNotesPage} >
         <FaPlus className='fab-ic'/>
       </div>
 

@@ -40,7 +40,7 @@
 }
 
 .wrapper .input-box input::placeholder{
-  color: gray;
+  color: yellow;
 }
 
 .wrapper .input-box .icon{

@@ -5,14 +5,18 @@ const Navbar = () => {
   const logout = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("userId");
-    console.log(localStorage.getItem("username"));
+  }
+
+  const moveToHomePage = () => {
+    localStorage.removeItem("addPage");
+    localStorage.removeItem("detailCardPage");
   }
 
   return (
     <div className='navbar'>
       <div className='title-home'>
         <h3>k-notes</h3>
-        <a href="/home" ><h3>Home</h3></a>
+        <a href="/home" onClick={moveToHomePage}><h3>Home</h3></a>
       </div>
       
       <div>

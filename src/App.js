@@ -3,15 +3,26 @@ import './App.css';
 import LoginForm from './components/loginForm/LoginForm';
 import Home from './components/home/Home';
 import DetailCard from './components/detailCard/DetailCard';
+import AddNote from './components/addEditNote/AddNote';
 
 const PrivateRoute = () => {
   const user = JSON.parse(localStorage.getItem('username'));
   return user ? <Outlet /> : <Navigate to="/" replace />;
 }
 
+const AnonymousRoute = () => {
+  const user = JSON.parse(localStorage.getItem('username'));
+  return user ? <Navigate to="/home" replace /> : <Outlet />;
+}
+
 const ValidateDetailCard = () => {
-  const location = useLocation();
-  return location.state ? <Outlet /> : <Navigate to="/home" replace />;
+  const detailCardData = JSON.parse(localStorage.getItem('detailCardPage'));
+  return detailCardData ? <Outlet /> : <Navigate to="/home" replace />;
+}
+
+const ValidateAddPage = () => {
+  const addPage = JSON.parse(localStorage.getItem('addPage'));
+  return addPage ? <Outlet /> : <Navigate to="/home" replace />;
 }
 
 function App() {
@@ -20,11 +31,17 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path='/' exact element={<LoginForm />} />
+          <Route element={<AnonymousRoute />}>
+            <Route path='/' exact element={<LoginForm />} />
+          </Route>
           <Route element={<PrivateRoute />} >
             <Route path='/home' element={<Home />} />
             <Route element={<ValidateDetailCard />}>
               <Route path='/home/detail' element={<DetailCard />} />
+            </Route>
+
+            <Route element={<ValidateAddPage />}>
+              <Route path='/home/addnote' element={<AddNote />} />
             </Route>
             
           </Route>

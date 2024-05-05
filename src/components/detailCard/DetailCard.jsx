@@ -11,6 +11,10 @@ const DetailCard = () => {
   const note = location.state;
   const navigate = useNavigate();
 
+  window.onpopstate = () => {
+    localStorage.removeItem('detailCardPage');
+  }
+
   const deleteNotes = async (id) => {
     try {
       const response = await fetch('http://localhost:8080/notes/deletenote', {
@@ -25,6 +29,7 @@ const DetailCard = () => {
       if(data.status === 200){
         navigate("/home");
         alert(data.msg);
+        localStorage.removeItem('detailCardPage');
         console.log("true");
         
       } else{

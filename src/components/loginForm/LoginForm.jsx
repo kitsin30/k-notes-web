@@ -12,7 +12,7 @@ const LoginForm = () => {
 
   const handleLogin = async (e) => {
 
-    e.preventDefault()
+    e.preventDefault();
     console.log(username);
 
     try {
@@ -64,7 +64,7 @@ const LoginForm = () => {
           </div>
 
           <div className='button-submit'>
-          <button type='submit'>Login</button>
+            <button type='submit'>Login</button>
           </div>
 
           <div className="register-acc">
