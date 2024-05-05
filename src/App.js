@@ -5,6 +5,8 @@ import Home from './components/home/Home';
 import DetailCard from './components/detailCard/DetailCard';
 import AddNote from './components/addEditNote/AddNote';
 import EditNote from './components/addEditNote/EditNote';
+import ForgotForm from './components/forgotForm/ForgotForm';
+import RegisterForm from './components/registerForm/RegisterForm';
 
 const PrivateRoute = () => {
   const user = JSON.parse(localStorage.getItem('username'));
@@ -39,6 +41,8 @@ function App() {
         <Routes>
           <Route element={<AnonymousRoute />}>
             <Route path='/' exact element={<LoginForm />} />
+            <Route path='/register' exact element={<RegisterForm />} />
+            <Route path='/forgot' exact element={<ForgotForm />} />
           </Route>
           <Route element={<PrivateRoute />} >
             <Route path='/home' element={<Home />} />

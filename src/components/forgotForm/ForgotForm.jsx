@@ -1,16 +1,14 @@
-import React, {useState} from 'react';
-import './LoginForm.css';
-import { FaUser } from "react-icons/fa";
-import { FaLock } from "react-icons/fa";
+import React, { useState } from 'react';
+import { FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-const LoginForm = () => {
+const ForgotForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleForgot = async (e) => {
 
     e.preventDefault();
     console.log(username);
@@ -47,20 +45,15 @@ const LoginForm = () => {
   return (
     <div className="login-body">
       <div className='wrapper'>
-        <form onSubmit={handleLogin}>
-          <h1>Login</h1>
+        <form onSubmit={handleForgot}>
+          <h1>Forgot Password</h1>
           <div className='input-box'>
             <input type="text" placeholder='Username' id="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
             <FaUser className='icon'/>
           </div>
 
-          <div className='input-box'>
-            <input type="password" placeholder='Password' id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-            <FaLock className='icon'/>
-          </div>
-
           <div className='forgot-password'>
-            <a href="/forgot">Forgot Password?</a>
+            <a href="/">Forgot Password?</a>
           </div>
 
           <div className='button-submit'>
@@ -68,13 +61,13 @@ const LoginForm = () => {
           </div>
 
           <div className="register-acc">
-            <p>Don't have an account? <a href="/register">Register Here</a></p>
+            <p>Don't have an account? <a href="/">Register Here</a></p>
           </div>
 
         </form>
       </div>
     </div>
   )
-};
+}
 
-export default LoginForm;
+export default ForgotForm;

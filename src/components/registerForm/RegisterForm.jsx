@@ -1,22 +1,21 @@
-import React, {useState} from 'react';
-import './LoginForm.css';
-import { FaUser } from "react-icons/fa";
-import { FaLock } from "react-icons/fa";
+import React, { useState } from 'react';
+import { FaLock, FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import '../loginForm/LoginForm.css';
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
 
     e.preventDefault();
     console.log(username);
 
     try {
-      const response = await fetch('http://localhost:8080/user/findbyid', {
+      const response = await fetch('http://localhost:8080/user/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -26,9 +25,8 @@ const LoginForm = () => {
       console.log(data);
 
       if(data.status === 200){
-        localStorage.setItem('username', JSON.stringify(data.obj.username));
-        localStorage.setItem('userId', JSON.stringify(data.obj.id));
-        navigate("/home");
+        navigate("/");
+        alert(data.msg);
         console.log("true");
         
       } else{
@@ -47,8 +45,8 @@ const LoginForm = () => {
   return (
     <div className="login-body">
       <div className='wrapper'>
-        <form onSubmit={handleLogin}>
-          <h1>Login</h1>
+        <form onSubmit={handleRegister}>
+          <h1>Register</h1>
           <div className='input-box'>
             <input type="text" placeholder='Username' id="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
             <FaUser className='icon'/>
@@ -64,17 +62,17 @@ const LoginForm = () => {
           </div>
 
           <div className='button-submit'>
-            <button type='submit'>Login</button>
+            <button type='submit'>Register</button>
           </div>
 
           <div className="register-acc">
-            <p>Don't have an account? <a href="/register">Register Here</a></p>
+            <p>Already have an account? <a href="/">Login Here</a></p>
           </div>
 
         </form>
       </div>
     </div>
   )
-};
+}
 
-export default LoginForm;
+export default RegisterForm;
