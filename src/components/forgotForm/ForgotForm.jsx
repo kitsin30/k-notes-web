@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { FaUser } from 'react-icons/fa';
+import { FaLock, FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import '../loginForm/LoginForm.css';
+import './ForgotForm.css';
 
 const ForgotForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmpassword, setConfirmPassword] = useState('');
   
   const navigate = useNavigate();
 
@@ -13,30 +16,35 @@ const ForgotForm = () => {
     e.preventDefault();
     console.log(username);
 
-    try {
-      const response = await fetch('http://localhost:8080/user/findbyid', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = await response.json();
-      console.log(data);
-
-      if(data.status === 200){
-        localStorage.setItem('username', JSON.stringify(data.obj.username));
-        localStorage.setItem('userId', JSON.stringify(data.obj.id));
-        navigate("/home");
-        console.log("true");
-        
-      } else{
-        console.log("false");
-        alert(data.msg);
+    if(confirmpassword === password){
+      try {
+        const response = await fetch('http://localhost:8080/user/findbyid', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+  
+        const data = await response.json();
+        console.log(data);
+  
+        if(data.status === 200){
+          navigate("/");
+          alert(data.msg);
+          console.log("true");
+          
+        } else{
+          console.log("false");
+          alert(data.msg);
+        }
+  
+      } catch (error) {
+        console.error(error);
+        alert(error);
       }
-
-    } catch (error) {
-      console.error(error);
-      alert(error);
+    } else {
+      alert("Password and Confirm Password doesn't match");
+      setPassword('');
+      setConfirmPassword('');
     }
 
     
@@ -47,21 +55,31 @@ const ForgotForm = () => {
       <div className='wrapper'>
         <form onSubmit={handleForgot}>
           <h1>Forgot Password</h1>
-          <div className='input-box'>
+          <div className='input-box-forgot'>
             <input type="text" placeholder='Username' id="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
             <FaUser className='icon'/>
           </div>
 
-          <div className='forgot-password'>
-            <a href="/">Forgot Password?</a>
+          <div className='input-box-forgot'>
+            <input type="password" placeholder='Password' id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <FaLock className='icon'/>
           </div>
 
+          <div className='input-box-forgot'>
+            <input type="password" placeholder='Confirm Password' id="confirmpassword" value={confirmpassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+            <FaLock className='icon'/>
+          </div>
+
+          {/* <div className='forgot-password'>
+            <a href="/">Forgot Password?</a>
+          </div> */}
+
           <div className='button-submit'>
-            <button type='submit'>Login</button>
+            <button type='submit'>Update Password</button>
           </div>
 
           <div className="register-acc">
-            <p>Don't have an account? <a href="/">Register Here</a></p>
+            <p><a href="/">Here to Login page</a></p>
           </div>
 
         </form>

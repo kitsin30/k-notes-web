@@ -29,6 +29,7 @@ const LoginForm = () => {
         localStorage.setItem('username', JSON.stringify(data.obj.username));
         localStorage.setItem('userId', JSON.stringify(data.obj.id));
         navigate("/home");
+        alert(data.msg);
         console.log("true");
         
       } else{

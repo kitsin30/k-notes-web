@@ -1,0 +1,33 @@
+.input-box-forgot{
+  position: relative;
+  width: 100%;
+  height: 40px;
+  margin: 20px 0;
+}
+
+.input-box-forgot input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, .2);
+  border-radius: 40px;
+  font-size: 16px;
+  color: white;
+  padding-left: 10px;
+  padding-right: 40px;
+
+}
+
+.input-box-forgot input::placeholder{
+  color: yellow;
+}
+
+.input-box-forgot .icon{
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+}
