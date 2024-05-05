@@ -43,11 +43,11 @@ const DetailCard = () => {
     }
   }
 
-  const editNotes = () => {
+  const moveToEditNotes = () => {
     const title = 'Edit Note';
     const flag = true;
     localStorage.setItem('editPage', JSON.stringify({ flag }));
-    navigate("/home/detail/editnote", {
+    navigate("detail/editnote", {
       state: { title, note }
     });
   }
@@ -65,7 +65,7 @@ const DetailCard = () => {
             <p>Delete</p>
           </div>
 
-          <div className="edit-button" onClick={editNotes}>
+          <div className="edit-button" onClick={moveToEditNotes}>
             <CiEdit className='edit-ic'/>
             <p>Edit</p>
           </div>

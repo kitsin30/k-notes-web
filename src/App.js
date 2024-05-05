@@ -31,7 +31,7 @@ const ValidateAddPage = () => {
 
 const ValidateEditPage = () => {
   const editPage = JSON.parse(localStorage.getItem('editPage'));
-  return editPage ? <Outlet /> : <Navigate to="/home/detail" replace />;
+  return editPage ? <Outlet /> : <Navigate to="/detail" replace />;
 }
 
 function App() {
@@ -49,10 +49,10 @@ function App() {
             <Route path='/home' element={<Home />} />
             <Route path='/search' element={<SearchPage />} />
             <Route element={<ValidateDetailCard />}>
-              <Route path='/home/detail' element={<DetailCard />} />
+              <Route path='/detail' element={<DetailCard />} />
 
               <Route element={<ValidateEditPage />}>
-                <Route path='/home/detail/editnote' element={<EditNote />} />
+                <Route path='/detail/editnote' element={<EditNote />} />
               </Route>
 
             </Route>

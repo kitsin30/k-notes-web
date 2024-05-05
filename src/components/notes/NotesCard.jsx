@@ -8,7 +8,7 @@ const NotesCard = ( { note, ctr } ) => {
   const moveToCard = (note) => {
     const flag = true;
     localStorage.setItem('detailCardPage', JSON.stringify({ flag }));
-    navigate("/home/detail", {
+    navigate("/detail", {
       state: note
     });
   }
