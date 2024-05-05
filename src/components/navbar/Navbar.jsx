@@ -9,6 +9,7 @@ const Navbar = () => {
 
   const moveToHomePage = () => {
     localStorage.removeItem("addPage");
+    localStorage.removeItem('editPage');
     localStorage.removeItem("detailCardPage");
   }
 

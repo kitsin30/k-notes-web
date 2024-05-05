@@ -6,16 +6,22 @@ const NotesForm = (props) => {
 
   props = props.props;
 
-  const [noteText, setNoteText] = useState('');
+  const [noteText, setNoteText] = useState(props.note ? props.note.userNotes : '');
   const navigate = useNavigate();
+
+  // if(props.note){
+  //   setNoteText(props.note.userNotes);
+  // }
 
   window.onpopstate = () => {
     localStorage.removeItem('addPage');
+    localStorage.removeItem('editPage');
   }
 
   const goBackToPrevPage = () => {
     navigate(-1);
     localStorage.removeItem('addPage');
+    localStorage.removeItem('editPage');
   }
 
   const handleCreateNote = async (e) => {
@@ -37,7 +43,7 @@ const NotesForm = (props) => {
           body: JSON.stringify({ userId, userNotes }),
         });
       } else{
-        const id = props.notes.id;
+        const id = props.note.id;
         response = await fetch('http://localhost:8080/notes/updatenote', {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
@@ -49,8 +55,11 @@ const NotesForm = (props) => {
       console.log(data);
 
       if(data.status === 200){
-        navigate(-1);
+        navigate('/home');
+        alert(data.msg);
         localStorage.removeItem('addPage');
+        localStorage.removeItem('editPage');
+        localStorage.removeItem('detailCardPage');
         console.log("true");
         
       } else{
@@ -71,7 +80,7 @@ const NotesForm = (props) => {
         <form onSubmit={handleCreateNote}>
           <h1>{props.title}</h1>
           <div className='notes-input'>
-            <textarea placeholder='write your note' id="note" value={noteText} onChange={(e) => setNoteText(e.target.value)} rows="6" cols="50" required>{props.note ? props.note.userNotes : ''}</textarea>
+            <textarea placeholder='write your note' id="note" value={noteText} onChange={(e) => setNoteText(e.target.value)} rows="6" cols="50" required />
           </div>
           <div className="button-validate-ok-cancel">
             <button type='submit' >Ok</button>

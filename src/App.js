@@ -1,9 +1,10 @@
-import { BrowserRouter as Router, Routes, Route, Outlet, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import './App.css';
 import LoginForm from './components/loginForm/LoginForm';
 import Home from './components/home/Home';
 import DetailCard from './components/detailCard/DetailCard';
 import AddNote from './components/addEditNote/AddNote';
+import EditNote from './components/addEditNote/EditNote';
 
 const PrivateRoute = () => {
   const user = JSON.parse(localStorage.getItem('username'));
@@ -25,6 +26,11 @@ const ValidateAddPage = () => {
   return addPage ? <Outlet /> : <Navigate to="/home" replace />;
 }
 
+const ValidateEditPage = () => {
+  const editPage = JSON.parse(localStorage.getItem('editPage'));
+  return editPage ? <Outlet /> : <Navigate to="/home/detail" replace />;
+}
+
 function App() {
 
   return (
@@ -38,6 +44,11 @@ function App() {
             <Route path='/home' element={<Home />} />
             <Route element={<ValidateDetailCard />}>
               <Route path='/home/detail' element={<DetailCard />} />
+
+              <Route element={<ValidateEditPage />}>
+                <Route path='/home/detail/editnote' element={<EditNote />} />
+              </Route>
+
             </Route>
 
             <Route element={<ValidateAddPage />}>

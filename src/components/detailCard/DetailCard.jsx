@@ -44,7 +44,12 @@ const DetailCard = () => {
   }
 
   const editNotes = () => {
-
+    const title = 'Edit Note';
+    const flag = true;
+    localStorage.setItem('editPage', JSON.stringify({ flag }));
+    navigate("/home/detail/editnote", {
+      state: { title, note }
+    });
   }
 
   return (
