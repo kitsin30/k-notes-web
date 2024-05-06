@@ -27,6 +27,10 @@ const Navbar = () => {
 
     console.log(searchNote);
 
+    localStorage.removeItem("addPage");
+    localStorage.removeItem('editPage');
+    localStorage.removeItem("detailCardPage");
+
     navigate("/search", {
       state: searchNote
     })
